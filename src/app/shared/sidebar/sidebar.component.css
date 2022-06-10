@@ -1,0 +1,10 @@
+.cuerpo {
+    display: flex;
+    align-items: stretch;
+  }
+
+.listas a:hover {
+  background-color: #3d3d3d;
+  color: white;
+  font-style: italic;
+}

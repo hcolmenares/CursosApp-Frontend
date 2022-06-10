@@ -1,0 +1,18 @@
+.green-icon {
+    color: #188754;
+}
+
+.red-icon {
+    color: #dc3545;
+}
+
+.tablita {
+    background-color: #3d3d3d;
+    color: white;
+}
+
+
+.cuerpo {
+    display: flex;
+    align-items: stretch;
+  }

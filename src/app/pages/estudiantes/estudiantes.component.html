@@ -1,0 +1,157 @@
+<div class="row">
+
+    <div class="col-md-4 cuerpo">
+
+        <div class="card">
+
+            <div class="card-body">
+
+                <h5 class="mb-2"> {{ accion | uppercase }} ESTUDIANTE</h5>
+
+                <form [formGroup]="form" (ngSubmit)="guardarEstudiante()">
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-user" [class.green-icon]="this.form.get('nombreEstudiante')?.valid"
+                                [class.red-icon]="this.form.get('nombreEstudiante')?.invalid && this.form.get('nombreEstudiante')?.touched"></i>
+                        </span>
+                        <input formControlName="nombreEstudiante" type="text" class="form-control"
+                            placeholder="Nombre del estudiante">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-id-card"
+                                [class.green-icon]="this.form.get('codigoEstudiante')?.valid"
+                                [class.red-icon]="this.form.get('codigoEstudiante')?.invalid && this.form.get('codigoEstudiante')?.touched"></i>
+                        </span>
+                        <input formControlName="codigoEstudiante" type="text" class="form-control"
+                            placeholder="Código del estudiante">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-at"
+                                [class.green-icon]="this.form.get('correoEstudiante')?.valid"
+                                [class.red-icon]="this.form.get('correoEstudiante')?.invalid && this.form.get('correoEstudiante')?.touched"></i>
+                        </span>
+                        <input formControlName="correoEstudiante" type="email" class="form-control"
+                            placeholder="Correo electronico">
+                    </div>
+
+                    
+                    <label>Curso No. 1</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </span>
+                        <select class="form-select" formControlName="curso1">
+                            <option value="">
+                                {{ selector1 }}
+                            </option>
+                            <option *ngFor="let curso of listCursos" [ngValue]="curso.nombreCurso"> {{ curso.nombreCurso
+                                }} </option>
+                        </select>
+                    </div>
+
+                    
+                    <label>Curso No. 2</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </span>
+                        <select class="form-select" formControlName="curso2">
+                            <option value="">
+                                {{ selector2 }}
+                            </option>
+                            <option *ngFor="let curso of listCursos" [ngValue]="curso.nombreCurso"> {{ curso.nombreCurso
+                                }} </option>
+                        </select>
+                    </div>
+
+                    <label>Curso No. 3</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </span>
+                        <select class="form-select" formControlName="curso3">
+                            <option value="">
+                                {{ selector3 }}
+                            </option>
+                            <option *ngFor="let curso of listCursos" [ngValue]="curso.nombreCurso"> {{ curso.nombreCurso
+                                }} </option>
+                        </select>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button [disabled]="this.form.invalid" class="btn btn-primary" type="submit">
+                            <i class="fa-solid fa-database"></i> &nbsp;
+                            Aceptar
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-8 cuerpo">
+
+        <div class="card tablita">
+
+            <div class="card-body">
+
+                <h5>LISTA DE ESTUDIANTES MATRICULADOS</h5>
+
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover table-sm">
+                        <tbody>
+                            <tr *ngFor="let estudiante of listEstudiantes">
+
+                                <td>
+                                    {{ estudiante.nombreEstudiante }}
+                                </td>
+
+                                <td>
+                                    {{ estudiante.codigoEstudiante }}
+                                </td>
+
+                                <td>
+                                    {{ estudiante.correoEstudiante }}
+                                </td>
+
+                                <td>
+                                    {{ estudiante.curso1 }}
+                                </td>
+
+                                <td>
+                                    {{ estudiante.curso2 }}
+                                </td>
+
+                                <td>
+                                    {{ estudiante.curso3 }}
+                                </td>
+
+                                <td>
+                                    <i (click)="editarEstudiante(estudiante)"
+                                        class="fa-solid fa-pen-to-square text-info"></i>
+                                </td>
+                                <td>
+                                    <i (click)="eliminarEstudiante(estudiante.id)"
+                                        class="fa-solid fa-trash text-danger"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

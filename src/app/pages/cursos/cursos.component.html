@@ -1,0 +1,114 @@
+<div class="row">
+
+    <div class="col-md-5 cuerpo">
+
+        <div class="card">
+
+            <div class="card-body">
+
+                <h5> {{ accion | uppercase }}  CURSO</h5>
+
+                <form [formGroup]="form" (ngSubmit)="guardarCurso()">
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-barcode"
+                            [class.green-icon]="this.form.get('codigoCurso')?.valid"
+                            [class.red-icon]="this.form.get('codigoCurso')?.invalid && this.form.get('codigoCurso')?.touched"></i>
+                        </span>
+                        <input formControlName="codigoCurso" type="text" class="form-control"
+                            placeholder="Codigo del curso">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-book-bookmark" 
+                            [class.green-icon]="this.form.get('nombreCurso')?.valid"
+                            [class.red-icon]="this.form.get('nombreCurso')?.invalid && this.form.get('nombreCurso')?.touched"></i>
+                        </span>
+                        <input formControlName="nombreCurso" type="text" class="form-control"
+                            placeholder="Nombre del curso">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-circle-info" 
+                            [class.green-icon]="this.form.get('descripcion')?.valid"
+                            [class.red-icon]="this.form.get('descripcion')?.invalid && this.form.get('descripcion')?.touched"></i>
+                        </span>
+                        <input formControlName="descripcion" type="text" class="form-control"
+                            placeholder="Descripción del curso">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-clock" 
+                            [class.green-icon]="this.form.get('noHoras')?.valid"
+                            [class.red-icon]="this.form.get('noHoras')?.invalid && this.form.get('noHoras')?.touched"></i>
+                        </span>
+                        <input formControlName="noHoras" type="number" class="form-control"
+                            placeholder="Horas semanales del curso">
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button [disabled]="this.form.invalid" class="btn btn-primary" type="submit">
+                            <i class="fa-solid fa-database"></i> &nbsp;
+                            Aceptar
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-7 cuerpo">
+
+        <div class="card tablita">
+
+            <div class="card-body">
+
+                <h5>LISTA DE CURSOS</h5>
+
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover">
+                        <tbody>
+                            <tr *ngFor="let curso of listCursos">
+
+                                <td>
+                                    {{ curso.codigoCurso }}
+                                </td>
+
+                                <td>
+                                    {{ curso.nombreCurso }}
+                                </td>
+
+                                <td>
+                                    {{ curso.descripcion }}
+                                </td>
+
+                                <td>
+                                    {{ curso.noHoras }}
+                                </td>
+
+                                <td>
+                                    <i (click)="editarCurso(curso)" class="fa-solid fa-pen-to-square text-info"></i>
+                                </td>
+                                <td>
+                                    <i (click)="eliminarCurso(curso.id)" class="fa-solid fa-trash text-danger"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
